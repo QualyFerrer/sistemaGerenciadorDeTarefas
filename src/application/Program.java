@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import entities.GerenciadorTarefas;
 import entities.Tarefa;
+import enums.prioridade.Prioridade;
 
 public class Program {
 
@@ -26,6 +27,7 @@ public class Program {
 			System.out.println("3 - Conluir tarefa");
 			System.out.println("4 - Remover tarefa");
 			System.out.println("5 - Procurar tarefa pelo id");
+			System.out.println("6 - Listar tarefas por prioridade");
 			System.out.println("0 - Sair");
 
 			try {
@@ -37,7 +39,38 @@ public class Program {
 				case 1:
 					System.out.println("Descreva a tarefa: ");
 					String descricao = sc.nextLine();
-					gerenciador.adicionarTarefa(descricao);
+					
+					System.out.println("Escolhe a prioridade:");
+					System.out.println("1 - BAIXA");
+					System.out.println("2 - MEDIA ");
+					System.out.println("3 - ALTA");
+					
+						int prioridadeOpcao = sc.nextInt();
+						sc.nextLine();
+						
+						Prioridade prioridade = null;
+					
+						switch(prioridadeOpcao) {
+						case 1: 
+							prioridade = Prioridade.BAIXA;
+							break;
+							
+						case 2:
+							prioridade = Prioridade.MEDIA;
+							break;
+							
+						case 3:
+							prioridade = Prioridade.ALTA;
+							break;
+						default:
+							prioridade = Prioridade.MEDIA;
+							
+						}
+						
+						
+						gerenciador.adicionarTarefa(descricao, prioridade);
+					
+					System.out.println();
 					System.out.println("Tarefa adicionada!");
 					break;
 
@@ -46,12 +79,17 @@ public class Program {
 					break;
 
 				case 3:
-					System.out.print("Digite o id da tarefa concluída: ");
-					int idConcluida = sc.nextInt();
-					gerenciador.marcarComoConcluida(idConcluida);
-					System.out.println("Tarefa concluída!");
-					break;
+				    System.out.print("Digite o id da tarefa concluída: ");
+				    int idConcluida = sc.nextInt();
 
+				    boolean concluida = gerenciador.marcarComoConcluida(idConcluida);
+
+				    if(concluida) {
+				        System.out.println("Tarefa concluída!");
+				    } else {
+				        System.out.println("Tarefa não encontrada!");
+				    }
+				    break;
 				case 4:
 					System.out.print("Digite o id da tarefa que deseja remover: ");
 					int idRemovida = sc.nextInt();
@@ -76,7 +114,10 @@ public class Program {
 				        System.out.println("Tarefa não encontrada.");
 				    }
 				    break;
-				
+				    
+				case 6:
+					gerenciador.listarPrioridade();
+					break;
 				case 0:
 					System.out.println("Programa finalizado!");
 					break;
