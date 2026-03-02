@@ -12,9 +12,11 @@ O sistema permite ao usuário:
 
 - ➕ Adicionar novas tarefas
 - 📄 Listar todas as tarefas cadastradas
-- 🔎 Buscar uma tarefa pelo ID
-- ✏️ Atualizar informações de uma tarefa
+- ✅ Marcar uma tarefa como concluída
 - ❌ Remover tarefas
+- 🔎 Buscar uma tarefa pelo ID
+- 🔎 Listar tarefas por prioridade
+- ✏️ Atualizar informações de uma tarefa
 - 📋 Menu interativo no terminal
 
 ---
@@ -35,16 +37,19 @@ Durante o desenvolvimento deste projeto foram aplicados conceitos importantes da
 ---
 
 # 📂 Estrutura do projeto
-
-```
-src
- ├─ application
- │   └─ Program.java
- │
- └─ entities
-     └─ Tarefa.java
-```
-
+├─ src/
+│   ├─ application/
+│   │   └─ Program.java             # Classe principal (main) com o menu e interação com o usuário
+│   │
+│   ├─ entities/
+│   │   ├─ Tarefa.java              # Representa uma tarefa com ID, descrição, prioridade e status
+│   │   └─ GerenciadorTarefas.java # Classe que gerencia a lista de tarefas e operações
+│   │
+│   └─ enums/
+│       └─ prioridade/
+│           └─ Prioridade.java      # Enum com valores BAIXA, MEDIA e ALTA
+│
+└─ README.md                        # Documentação do projeto
 ### Program.java
 
 Responsável por:
